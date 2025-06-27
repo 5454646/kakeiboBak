@@ -17,10 +17,18 @@ target/
 
 
 # Gradle
-
 .gradle/
 
 build/
+
+
+
+# 除外しないパス
+
+!gradle/wrapper/gradle-wrapper.jar
+
+!gradle/wrapper/gradle-wrapper.properties
+
 
 
 
