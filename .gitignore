@@ -1,0 +1,35 @@
+va
+
+*.class
+
+*.jar
+
+*.war
+
+*.log
+
+
+
+# Maven
+
+target/
+
+
+
+# Gradle
+
+.gradle/
+
+build/
+
+
+
+# IDEs
+
+.idea/
+
+*.iml
+
+.vscode/
+
+

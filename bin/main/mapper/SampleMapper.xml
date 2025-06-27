@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.SampleMapper">
+    <select id="select" resultType="com.example.demo.entity.TestScore">
+        select * from scores;
+    </select>
+    
+    <insert id="insertExpense" parameterType="com.example.demo.entity.Expense" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO expenses (user_id, date, reason, category, amount)
+    VALUES (#{userId}, #{date}, #{reason}, #{category}, #{amount})
+  </insert>
+  
+  <insert id="insertIncome" parameterType="com.example.demo.entity.Income" useGeneratedKeys="true" keyProperty="id">
+  INSERT INTO incomes (user_id, date, source, category, amount)
+  VALUES (#{userId}, #{date}, #{source}, #{category}, #{amount})
+</insert>
+
+<select id="findByDateRange" resultType="com.example.demo.entity.Expense">
+    SELECT id, user_id, date, reason, category, amount, created_at
+    FROM expenses
+    WHERE date BETWEEN #{from} AND #{to}
+    ORDER BY date ASC
+  </select>
+  
+  <select id="findByDateIncomeRange" resultType="com.example.demo.entity.Income">
+    SELECT
+    id                                          -- id
+    , user_id                                   -- user_id
+    , date                                      -- date
+    , source                                    -- source
+    , category                                  -- category
+    , amount                                    -- amount
+    , created_at                                -- created_at
+FROM
+    kakeibo.incomes 
+WHERE date BETWEEN #{from} AND #{to}
+ORDER BY date
+  </select>
+  
+  <select id="getExpenssesAllAmount">
+  select sum(amount) from kakeibo.expenses ;
+  </select>
+  
+  <select id="getIncomesAllAmount">
+  select sum(amount) from kakeibo.incomes ;
+  </select>
+  
+  <delete id="deleteExpenses">
+  delete from kakeibo.expenses
+  where id = #{id};
+  </delete>
+  
+  <delete id="deleteIncomes">
+  delete from kakeibo.incomes
+  where id = #{id};
+  </delete>
+</mapper>
